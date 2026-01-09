@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.log
+*.sqlite3
+
+# Django
+*.env
+*.pot
+*.pyc
+*.mo
+media/
+staticfiles/
+db.sqlite3
+
+# Virtual environment
+venv/
+ENV/
+env/
+
+# Docker
+*.env
+*.log
+docker-compose.override.yml
+docker-compose.override.yml
+**/docker-compose.override.yml
+**/docker-compose.override.yaml
+
+# Postgres data volume (if accidentally added)
+postgres_data/
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
