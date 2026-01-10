@@ -51,14 +51,13 @@ class LoginView(APIView):
             key="refresh_token",
             value=str(refresh),
             httponly=True,
-            secure=True,       # True in production (HTTPS)
-            samesite="Strict",
+            secure=False,       
+            samesite="Lax",
             max_age=7 * 24 * 60 * 60,
         )
 
         return response
-    
-
+     
 
 class RefreshTokenView(APIView):
     """

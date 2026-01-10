@@ -65,3 +65,12 @@ class CategoryDetailView(APIView):
         category.is_deleted = True
         category.save()
         return Response({"detail": "Category deleted"}, status=status.HTTP_204_NO_CONTENT)
+
+
+class CategoryListUserView(APIView):
+
+    def get(self, request):
+        # Only list categories which are not deleted
+        categories = Category.objects.filter(is_deleted=False)
+        serializer = CategorySerializer(categories, many=True)
+        return Response(serializer.data)

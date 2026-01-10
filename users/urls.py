@@ -5,5 +5,5 @@ from .views import LoginView, RefreshTokenView, LogoutView
 urlpatterns = [
     path('login/', LoginView.as_view(), name='admin-login'),
     path("refresh/", RefreshTokenView.as_view(), name="token_refresh"),
-    path("auth/logout/", LogoutView.as_view(), name="logout"),
+    path("logout/", LogoutView.as_view(), name="logout"),
 ]

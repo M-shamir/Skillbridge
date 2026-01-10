@@ -63,3 +63,15 @@ class ApproveTrainerView(APIView):
             "status": trainer.status,
             "password_sent": True
         })
+    
+
+class ApprovedTrainerListView(APIView):
+
+
+    def get(self, request):
+        trainers = TrainerProfile.objects.filter(
+            status="APPROVED",
+            is_deleted=False
+        )
+        serializer = TrainerPendingSerializer(trainers, many=True)
+        return Response(serializer.data)
