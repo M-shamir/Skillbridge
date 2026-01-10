@@ -6,7 +6,7 @@ def notify_training_session(session):
     """
     Notify trainer and all beneficiaries about a newly created session.
     """
-    # Notify trainer
+    
     trainer_email = session.trainer.email
     subject = f"New Training Session Assigned: {session.topic}"
     message = f"""

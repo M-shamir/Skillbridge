@@ -17,7 +17,7 @@ class LoginView(APIView):
 
         user = serializer.validated_data["user"]
 
-        # 🔹 Detect role
+        
         if user.is_superuser:
             role = "ADMIN"
         elif hasattr(user, "trainerprofile"):
@@ -30,7 +30,7 @@ class LoginView(APIView):
                 status=status.HTTP_403_FORBIDDEN,
             )
 
-        # 🔹 Create tokens
+
         refresh = RefreshToken.for_user(user)
 
         response = Response(
@@ -46,7 +46,7 @@ class LoginView(APIView):
             status=status.HTTP_200_OK,
         )
 
-        # 🔹 Store refresh token in HttpOnly cookie
+       
         response.set_cookie(
             key="refresh_token",
             value=str(refresh),
@@ -64,7 +64,7 @@ class RefreshTokenView(APIView):
     Reads refresh token from cookie and returns a new access token.
     """
     def post(self, request):
-        # Read token from cookie
+      
         refresh_token = request.COOKIES.get("refresh_token")
 
         if not refresh_token:
@@ -74,7 +74,7 @@ class RefreshTokenView(APIView):
             )
 
         try:
-            # Validate and create new access token
+            
             refresh = RefreshToken(refresh_token)
             access_token = str(refresh.access_token)
 
@@ -92,7 +92,7 @@ class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        # 🔹 Get refresh token from cookie
+        
         refresh_token = request.COOKIES.get("refresh_token")
 
         if not refresh_token:
@@ -102,9 +102,9 @@ class LogoutView(APIView):
             )
 
         try:
-            # 🔹 Blacklist the refresh token
+            
             token = RefreshToken(refresh_token)
-            token.blacklist()  # requires SimpleJWT Blacklist app installed
+            token.blacklist()  
 
         except TokenError:
             return Response(
@@ -112,7 +112,7 @@ class LogoutView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # 🔹 Clear the cookie
+        
         response = Response({"detail": "Successfully logged out"}, status=status.HTTP_200_OK)
         response.delete_cookie("refresh_token")
 

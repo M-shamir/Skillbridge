@@ -4,8 +4,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from .models import Category
 from .serializers import CategorySerializer
-from users.permissions import AdminOnly  # reuse AdminOnly permission
-
+from users.permissions import AdminOnly  
 class CategoryListCreateView(APIView):
     permission_classes = [IsAuthenticated, AdminOnly]
 
@@ -70,7 +69,7 @@ class CategoryDetailView(APIView):
 class CategoryListUserView(APIView):
 
     def get(self, request):
-        # Only list categories which are not deleted
+        
         categories = Category.objects.filter(is_deleted=False)
         serializer = CategorySerializer(categories, many=True)
         return Response(serializer.data)

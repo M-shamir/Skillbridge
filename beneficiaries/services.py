@@ -6,7 +6,6 @@ from .models import BeneficiaryProfile
 from core.utils import send_email
 
 def generate_random_password(length=8):
-    """Generate a secure random password."""
     characters = string.ascii_letters + string.digits + string.punctuation
     return "".join(random.choice(characters) for _ in range(length))
 

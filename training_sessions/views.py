@@ -19,7 +19,7 @@ class TrainingSessionListCreateAPIView(APIView):
         serializer = TrainingSessionSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         session = serializer.save()
-        # Notify trainer and trainees
+        
         notify_training_session(session)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 

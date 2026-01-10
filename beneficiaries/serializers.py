@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import BeneficiaryProfile
 
+
 class BeneficiaryRegistrationSerializer(serializers.ModelSerializer):
     email = serializers.EmailField()
     username = serializers.CharField()
@@ -16,20 +17,18 @@ class BeneficiaryRegistrationSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         from categories.models import Category
 
-        # Extract user fields
+      
         username = validated_data.pop("username")
         email = validated_data.pop("email")
         age = validated_data.pop("age")
         category_id = validated_data.pop("category_id")
         documents = validated_data.pop("documents", "")
 
-        # Create inactive user
         user = User.objects.create_user(username=username, email=email, password=None, is_active=False)
 
-        # Link category
         category = Category.objects.get(pk=category_id)
 
-        # Create beneficiary profile
+        
         beneficiary = BeneficiaryProfile.objects.create(
             user=user,
             age=age,
@@ -42,8 +41,7 @@ class BeneficiaryRegistrationSerializer(serializers.ModelSerializer):
 
 
 
-from rest_framework import serializers
-from .models import BeneficiaryProfile
+
 
 class BeneficiaryApproveSerializer(serializers.Serializer):
     id = serializers.IntegerField()

@@ -14,10 +14,9 @@ class TrainerRegistrationSerializer(serializers.ModelSerializer):
         username = validated_data.pop("username")
         email = validated_data.pop("email")
 
-        # Create inactive user
+        
         user = User.objects.create_user(username=username, email=email, password=None, is_active=False)
 
-        # Create trainer profile
         trainer = TrainerProfile.objects.create(
             user=user,
             email=email,
