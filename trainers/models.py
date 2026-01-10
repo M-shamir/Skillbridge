@@ -12,6 +12,7 @@ class TrainerProfile(models.Model):
     email = models.EmailField()
     is_active = models.BooleanField(default=False)  # account inactive until admin approval
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="PENDING")
+    is_deleted = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

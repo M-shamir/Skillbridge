@@ -25,3 +25,12 @@ class TrainerRegistrationSerializer(serializers.ModelSerializer):
             is_active=False
         )
         return trainer
+
+
+class TrainerPendingSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source="user.username", read_only=True)
+    email = serializers.EmailField(source="user.email", read_only=True)
+
+    class Meta:
+        model = TrainerProfile
+        fields = ["id", "username", "email", "created_at"]
