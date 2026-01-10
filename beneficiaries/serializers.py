@@ -38,3 +38,13 @@ class BeneficiaryRegistrationSerializer(serializers.ModelSerializer):
             status="PENDING"
         )
         return beneficiary
+
+
+
+
+from rest_framework import serializers
+from .models import BeneficiaryProfile
+
+class BeneficiaryApproveSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+
