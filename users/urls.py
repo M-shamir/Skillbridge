@@ -1,7 +1,9 @@
 # apps/users/urls.py
 from django.urls import path
-from .views import AdminLoginView
+from .views import LoginView, RefreshTokenView, LogoutView
 
 urlpatterns = [
-    path('login/', AdminLoginView.as_view(), name='admin-login'),
+    path('login/', LoginView.as_view(), name='admin-login'),
+    path("refresh/", RefreshTokenView.as_view(), name="token_refresh"),
+    path("auth/logout/", LogoutView.as_view(), name="logout"),
 ]
