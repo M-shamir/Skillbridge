@@ -1,11 +1,7 @@
 
 # SkillBridge Backend
 
-> **Note (Linux):** If PostgreSQL is running locally and conflicts with Docker, stop it:
->
-> ```bash
-> sudo service postgresql stop
-> ```
+
 
 SkillBridge is a backend service built with **Django REST Framework**, **PostgreSQL**, and **Docker**. It provides APIs for authentication, user management, and platform-specific features, all containerized for easy development and deployment.
 
