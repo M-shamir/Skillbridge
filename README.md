@@ -1,4 +1,3 @@
-sudo service postgresql stop
 
 # SkillBridge Backend
 
